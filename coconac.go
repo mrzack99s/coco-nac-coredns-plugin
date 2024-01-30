@@ -50,9 +50,6 @@ func (r *ResponsePrinter) WriteMsg(res *dns.Msg) error {
 		A:   net.IPv4(8, 8, 8, 8),
 	})
 
-	res.Answer = append(res.Answer, &dns.TXT{
-		Hdr: dns.RR_Header{Name: domain, Rrtype: dns.TypeA, Class: dns.ClassINET, Ttl: 60},
-		Txt: []string{CocoNAC_Host, CocoNAC_APIKey},
-	})
+	log.Info(CocoNAC_Host, CocoNAC_APIKey, domain)
 	return r.ResponseWriter.WriteMsg(res)
 }
